@@ -22,17 +22,23 @@ $logChannelID = Read-Host "Enter Log Channel ID:"
 [System.Environment]::SetEnvironmentVariable("ACTION_CHANNEL_ID", $actionChannelID, "User")
 [System.Environment]::SetEnvironmentVariable("LOG_CHANNEL_ID", $logChannelID, "User")
 
+Write-Host "Systen environment variables updated"
 
 
 $folderPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 $mainScript = Join-Path $folderPath "index.js"
 $startupScript = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\doorbell.cmd"
+Write-Host "Installing doorbell at $startupScript..."
 
 $nodePath = (Get-Command node).Source
 
 "@echo off
 `"$nodePath`" `"$mainScript`"
 exit" | Out-File -Encoding ASCII $startupScript
+
+Write-Host "Installed doorbell at $startupScript"
+
+$apiKey = Read-Host "Installation complete. Press enter to exit..."
 
 
 
