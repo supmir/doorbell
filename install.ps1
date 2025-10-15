@@ -15,8 +15,8 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)){
 
 
 $apiKey = Read-Host "Enter Discord API Key:"
-$apiKey = Read-Host "Enter Action Channel ID:"
-$apiKey = Read-Host "Enter Log Channel ID:"
+$actionChannelID = Read-Host "Enter Action Channel ID:"
+$logChannelID = Read-Host "Enter Log Channel ID:"
 
 [System.Environment]::SetEnvironmentVariable("DOORBELL_TOKEN", $apiKey, "User")
 [System.Environment]::SetEnvironmentVariable("ACTION_CHANNEL_ID", $actionChannelID, "User")
